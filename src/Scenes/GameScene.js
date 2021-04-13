@@ -11,6 +11,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create () {
-    this.add.image(window.innerWidth/2, window.innerHeight/2, 'logo');
+    this.add.image(400, 300, 'logo');
   }
 };
