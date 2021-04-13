@@ -1,13 +1,15 @@
-import 'phaser';
+import "phaser";
 
 export default class BootScene extends Phaser.Scene {
-  constructor () {
-    super('Boot');
+  constructor() {
+    super("Boot");
   }
 
-  preload () {
+  preload() {
+    this.load.image("tbart_logo", "assets/tbart-icon.jpg");
   }
 
-  create () {
+  create() {
+    this.scene.start("Preloader");
   }
-};
+}
