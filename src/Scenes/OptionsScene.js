@@ -6,8 +6,13 @@ export default class OptionsScene extends Phaser.Scene {
   }
 
   preload () {
+    this.add.text(0, 0, "Options Scene", {
+      fontSize: "32px",
+      fill: "#fff",
+    });
   }
 
   create () {
+
   }
 };
