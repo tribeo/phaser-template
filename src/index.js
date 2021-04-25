@@ -6,9 +6,17 @@ import PreloaderScene from "./Scenes/PreloaderScene";
 import TitleScene from "./Scenes/TitleScene";
 import OptionsScene from "./Scenes/OptionsScene";
 import CreditsScene from "./Scenes/CreditsScene";
+import Model from "./Model";
+
 class MyGame extends Phaser.Game {
   constructor() {
     super(config);
+
+    // make model accessible to all our Phaser Scenes
+    // we are now able to access that model in our Scenes by calling this.sys.game.globals.model
+    const model = new Model();
+    this.globals = { model };
+
     this.scene.add("Boot", BootScene);
     this.scene.add("Preloader", PreloaderScene);
     this.scene.add("Title", TitleScene);
