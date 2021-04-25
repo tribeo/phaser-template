@@ -46,9 +46,12 @@ export default class TitleScene extends Phaser.Scene {
     });
     this.centerButtonText(this.optionsText, this.optionsButton);
 
-    this.optionsButton.on("pointerdown", function (pointer) {
-      this.scene.start("Options");
-    }.bind(this));
+    this.optionsButton.on(
+      "pointerdown",
+      function (pointer) {
+        this.scene.start("Options");
+      }.bind(this)
+    );
 
     // ************ for Credits ************ //
     this.creditsButton = this.add
@@ -62,9 +65,12 @@ export default class TitleScene extends Phaser.Scene {
     });
     this.centerButtonText(this.creditsText, this.creditsButton);
 
-    this.creditsButton.on("pointerdown", function (pointer) {
-      this.scene.start("Credits");
-    }.bind(this));
+    this.creditsButton.on(
+      "pointerdown",
+      function (pointer) {
+        this.scene.start("Credits");
+      }.bind(this)
+    );
 
     // ************ for all buttons ************ //
     // to give our UI buttons a hover effect
@@ -74,6 +80,14 @@ export default class TitleScene extends Phaser.Scene {
     this.input.on("pointerout", function (event, gameObjects) {
       gameObjects[0].setTexture("blueButton2");
     });
+
+    this.model = this.sys.game.globals.model;
+    if (this.model.musicOn && !this.model.bgMusicPlaying) {
+      this.bgMusic = this.sound.add("bgMusic", { volumn: 0.5, loop: true });
+      this.bgMusic.play();
+      this.model.bgMusicPlaying = true;
+      this.sys.game.globals.bgMusic = this.bgMusic;
+    }
   }
 
   // offset => the amount we want to offset the game object Vertically.

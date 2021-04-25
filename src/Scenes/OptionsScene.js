@@ -5,13 +5,6 @@ export default class OptionsScene extends Phaser.Scene {
     super("Options");
   }
 
-  // preload () {
-  //   this.add.text(0, 0, "Options Scene", {
-  //     fontSize: "32px",
-  //     fill: "#fff",
-  //   });
-  // }
-
   create() {
     this.model = this.sys.game.globals.model;
 
@@ -42,8 +35,6 @@ export default class OptionsScene extends Phaser.Scene {
       }.bind(this)
     );
 
-    this.updateAudio();
-
     this.menuButton = this.add.sprite(400, 500, "blueButton2").setInteractive();
     this.menuText = this.add.text(0, 0, "Menu", {
       fontSize: "32px",
@@ -56,13 +47,21 @@ export default class OptionsScene extends Phaser.Scene {
         this.scene.start("Title");
       }.bind(this)
     );
+
+    this.updateAudio();
   }
 
   updateAudio() {
     if (!this.model.musicOn) {
       this.musicButton.setTexture("box"); // uncheck checkbox image
+      this.sys.game.globals.bgMusic.stop();
+      this.model.bgMusicPlaying = false;
     } else {
       this.musicButton.setTexture("checkedBox");
+      if (!this.model.bgMusicPlaying) {
+        this.sys.game.globals.bgMusic.play();
+        this.model.bgMusicPlaying = true;
+      }
     }
 
     if (!this.model.soundOn) {
